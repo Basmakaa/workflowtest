@@ -1,5 +1,1 @@
-with Alire;
-project Main is
-   for Source_Dirs use ("src");
-   for Main use ("main.adb");
-end Main;
+with "ada-programs";
