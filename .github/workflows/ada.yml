@@ -1,9 +1,6 @@
 name: Ada Build and Test
 
-on:
-  push:
-    branches:
-      - main  # Adjust this branch name as needed
+on: [push]
 
 jobs:
   build:
@@ -13,11 +10,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up stable `alr`
-        uses: alire-project/setup-alire@v2
+      - name: Install Ada compiler
+        run: sudo apt-get install gnat
 
-      - name: Build
-        run: alr build
+      - name: Compile Ada code
+        run: gnatmake main.adb
+
+      - name: Run Ada program
+        run: ./main
+
+
+
+
+
+     
       
       
       
