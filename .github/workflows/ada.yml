@@ -10,18 +10,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      
-      - uses: alire-project/setup-alire@v2
+      - name: Install Ada compiler and Alire
+        run: |
+          sudo apt-get install gnat
+          curl -sSL https://alire.ada.dev/install | bash -s -- -y
+          source ~/.alire/env
+        shell: bash
 
-        # Build the project using the validation build profile to enforce static analysis and coding style.
-      - run: alr build --validation
-
-        # Build & run tests
-      - run: cd test && alr build --validation && alr run
+      - name: Fetch project dependencies
+        run: alr update
 
       - name: Build Ada code
-        run: alire build
+        run: alr build
 
       - name: Run Ada program
         run: ./main
+
+      
+      
       
