@@ -10,11 +10,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Ada compiler
-        run: sudo apt-get install gnat
+      - name: Install Alire
+        run: |
+          git clone https://github.com/alire-project/alire.git
+          cd alire
+          make build
+          sudo make install
+          alire --version
+        shell: bash
 
-      - name: Compile Ada code
-        run: gnatmake main.adb
+      - name: Fetch project dependencies
+        run: alire update
+
+      - name: Build Ada code
+        run: alire build
 
       - name: Run Ada program
         run: ./main
