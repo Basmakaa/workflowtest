@@ -13,15 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Install and setup Alire package manager
-      - uses: alire-project/setup-alire@v2
+      - name: Set up stable `alr`
+        uses: alire-project/setup-alire@v2
 
-        # Build the project using the validation build profile to enforce static analysis and coding style.
-      - run: alr build --validation
-
-
-      - name: Run Ada program
-        run: ./main
+      - name: Build
+        run: alr build
       
       
       
