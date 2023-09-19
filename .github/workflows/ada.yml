@@ -15,7 +15,8 @@ jobs:
 
       - name: Install Ada compiler and Alire
         run: |
-          sudo apt-get install gnat
+          sudo apt-get update
+          sudo apt-get install -y gnat
           curl -sSL https://alire.ada.dev/install | bash -s -- -y
           source ~/.alire/env
         shell: bash
