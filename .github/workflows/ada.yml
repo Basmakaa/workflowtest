@@ -1,6 +1,9 @@
 name: Ada Build and Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # Adjust this branch name as needed
 
 jobs:
   build:
@@ -25,7 +28,6 @@ jobs:
 
       - name: Run Ada program
         run: ./main
-
       
       
       
