@@ -1,3 +1,0 @@
-with "ada-programs";
-executable project is
-   /main.adb;  -- Adjust the path if needed
