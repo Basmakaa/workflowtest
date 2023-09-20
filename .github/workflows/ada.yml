@@ -19,8 +19,7 @@ jobs:
           crates: gnat_native gprbuild
 
       - name: Build alr with default toolchain
-        shell: bash
-        run: dev/build.sh
+        run: alr build 
 
 
 
