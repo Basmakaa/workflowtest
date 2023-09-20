@@ -23,7 +23,8 @@ jobs:
 
       - name: Add Alire to PATH
         run: echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc && source $HOME/.bashrc
-
+      - name: Add Alire to PATH 2
+        run: echo 'export PATH="$HOME/.local/bin:$PATH"' >> $GITHUB_PATH
       - name: Build with Alire
         run: alr get --build main
 
