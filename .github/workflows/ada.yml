@@ -23,6 +23,11 @@ jobs:
         # Install and setup Alire package manager
       - uses: alire-project/setup-alire@v2
 
+      - name: Run your script
+        run: |
+          chmod +x install.sh
+          ./script.sh
+
         # Build the project using the validation build profile to enforce static analysis and coding style.
       - run: alr -n build 
 
