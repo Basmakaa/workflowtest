@@ -12,16 +12,15 @@ jobs:
 
       - name: Install Ada compiler
         run: sudo apt-get install gnat
-      - name: Set up stable `alr`
-        uses: alire-project/setup-alire@v2
 
-      - name: Build
-        run: alr build
-      - name: Compile Ada code
-        run: gnatmake main.adb
+      - name: Install FSF toolchain
+        uses: alire-project/alr-install@v2
+        with:
+          crates: gnat_native gprbuild
 
-      - name: Run Ada program
-        run: ./main
+      - name: Build alr with default toolchain
+        shell: bash
+        run: dev/build.sh
 
 
 
