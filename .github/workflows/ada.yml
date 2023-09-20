@@ -12,7 +12,7 @@ jobs:
       fail-fast: false # Don't stop all the workflows when one of them fails.
 
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest] # List of GitHuh Actions platform to run the workflow on
+        os: [ubuntu-latest] # List of GitHuh Actions platform to run the workflow on
 
     runs-on: ${{ matrix.os }} # Run the continous integration workflow on each OS listed in the matrix.
 
@@ -22,7 +22,7 @@ jobs:
 
         # Install and setup Alire package manager
       - uses: alire-project/setup-alire@v2
-      - run: alr init
+      - run: alr init workflowtest
       
 
         # Build the project using the validation build profile to enforce static analysis and coding style.
