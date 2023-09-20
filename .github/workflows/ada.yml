@@ -1,32 +1,30 @@
-name: Ada Build and Test
-
-on: [push]
+on:                    # Run the workflow for each of the following event:
+  push:                # - A branch is pushed or updated.
+  pull_request:        # - A pull-request is openned or updated.
+  workflow_dispatch:   # - A manual run of the workflow is requested
+  release:
+    types: [created]   # - A release is created.
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+
+      fail-fast: false # Don't stop all the workflows when one of them fails.
+
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest] # List of GitHuh Actions platform to run the workflow on
+
+    runs-on: ${{ matrix.os }} # Run the continous integration workflow on each OS listed in the matrix.
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        # Check-out the repository
+      - uses: actions/checkout@v2
 
-      - name: Install Ada compiler and other dependencies
-        run: |
-          sudo apt-get update -q
-          sudo apt-get install -y gnat gprbuild
+        # Install and setup Alire package manager
+      - uses: alire-project/setup-alire@v2
 
-     
-      - name: Install FSF toolchain
-        uses: alire-project/alr-install@v1
-        with:
-          crates: gnat_native gprbuild
-
-      - name: Add Alire to PATH
-        run: echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc && source $HOME/.bashrc
-      - name: Add Alire to PATH 2
-        run: echo 'export PATH="$HOME/.local/bin:$PATH"' >> $GITHUB_PATH
-      - name: Build with Alire
-        run: alr get --build main
+        # Build the project using the validation build profile to enforce static analysis and coding style.
+      - run: alr build --validation
 
 
 
