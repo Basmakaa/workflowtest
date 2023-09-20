@@ -19,7 +19,7 @@ jobs:
           crates: gnat_native gprbuild
 
       - name: Build alr with default toolchain
-        run: alr build 
+        run: alr init 
 
 
 
