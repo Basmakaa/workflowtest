@@ -1,0 +1,11 @@
+name = "user_interface"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["Anne-Sophie Cusson"]
+maintainers = ["Anne-Sophie Cusson <example@example.com>"]
+maintainers-logins = ["4nn3-50ph13"]
+
+executables = ["user_interface"]
+[[depends-on]]
+gtkada = "^23.0.0"
