@@ -10,16 +10,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Ada compiler
-        run: sudo apt-get install gnat
+      - name: Install Ada compiler and other dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y gnat gprbuild
 
-      - name: Install FSF toolchain
-        uses: alire-project/alr-install@v1
-        with:
-          crates: gnat_native gprbuild
+      - name: Install Alire
+        run: |
+          curl -sSL https://alire.ada.dev/install.sh | bash -s -- --prefix=$HOME/.local
 
-      - name: Build alr with default toolchain
-        run: alr init 
+      - name: Add Alire to PATH
+        run: echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc && source $HOME/.bashrc
+
+      - name: Build with Alire
+        run: alr build
 
 
 
