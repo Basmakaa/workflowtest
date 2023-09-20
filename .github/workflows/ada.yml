@@ -22,6 +22,8 @@ jobs:
 
         # Install and setup Alire package manager
       - uses: alire-project/setup-alire@v2
+      - run: alr init
+      
 
         # Build the project using the validation build profile to enforce static analysis and coding style.
       - run: alr build --validation
