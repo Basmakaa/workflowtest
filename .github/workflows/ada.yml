@@ -14,7 +14,7 @@ jobs:
         run: sudo apt-get install gnat
 
       - name: Install FSF toolchain
-        uses: alire-project/alr-install@v2
+        uses: alire-project/alr-install@v1
         with:
           crates: gnat_native gprbuild
 
